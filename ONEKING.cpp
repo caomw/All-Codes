@@ -1,112 +1,51 @@
-
-
-//(҂>_<)
-//<,︻╦╤─ ҉ ---- -M-A-R-K-!!!-R-O-X-O-R- ------
-// /﹋\" BRATATATATATAT!!
-/*
-#ifndef ONLINE_JUDGE
-	freopen("input.txt","r",stdin);
-	freopen("output.txt","w",stdout);
-#endif
-*/
 #include<bits/stdc++.h>
-#include<iostream>
-#include<algorithm>
-#include<stdio.h>
-#include<time.h>
-
 using namespace std;
-
 typedef long long int ll;
 
-/*
-clock_t begin, end;
-double time_spent;
+struct Data
+	{	ll s,f,p;	};
 
-begin = clock();
-// here, do your time-consuming job
-end = clock();
-time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-*/
+bool operator < (Data const &a, Data const &b)
+	{return a.f<b.f;}
 
-void fastWrite(ll n)
+main()
 {
+    ios::sync_with_stdio(0);
+    cin.tie(NULL);
 
-char sum[20];
-ll i=0;
-do
-{ sum[i++]=n%10+48;
-  n=n/10;
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt","w",stdout);
+    #endif
 
-}while(n!=0);
-
-while(i>0)
-{
-  putchar(sum[--i]);
-
-}
- putchar('\n');
-
-}
-
-inline void get(ll &x)
-
-{
-    register ll c = getchar();
-
-    x = 0;
-
-    ll neg = 0;
-
-    for(;((c<48 || c>57) && c != '-');c = getchar());
-
-    if(c=='-') {neg=1;c=getchar();}
-
-    for(;c>47 && c<58;c = getchar()) {x = (x<<1) + (x<<3) + c - 48;}
-
-    if(neg) x=-x;
-
-}
-
-int main()
-{
     ll t;
-    get(t);
+    cin>>t;
 
     while(t--)
     {
-        ll n;
-        get(n);
+    	ll n;
+    	cin>>n;
 
-        ll arr[100005],siz=0,count=0;
-        memset(arr,0,sizeof(arr));
+    	Data arr[n+5];
+    	for(ll i=0;i<n;i++)
+    		cin>>arr[i].s>>arr[i].f;
 
-        for(ll i=0;i<n;i++)
-        {
-            ll l,r;
-            get(l);get(r);
+    	if (n==0 || n==1)
+    	{
+    		cout<<n<<"\n";
+    		continue;
+    	}
 
-            for(ll i=l;i<r+1;i++)
-                arr[i]++;
+    	sort(arr,arr+n);
 
-            if(r>siz)
-                siz=r;
-        }
-        //sort(arr,arr+siz+1);
+    	ll cnt = 1,cur=0;
 
-        for(ll i=siz+1;i>-1;i--)
-            cout<<arr[i]<<" ";
-        cout<<"\n";
+    	for(ll i=1 ;i<n;i++)
+    		if(arr[i].s>arr[cur].f)
+    			cur=i,cnt++;
 
-        for(ll i=siz+1;i>-1;i--)
-        {
-            count++;
-            n-=arr[i];
+    	cout<<cnt<<"\n";
 
-            if(n<=0)
-                break;
-        }
-
-        fastWrite(count);
     }
+	return 0;
 }
