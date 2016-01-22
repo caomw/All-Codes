@@ -1,11 +1,26 @@
+/* 
+   SPOJ Problem Set (Classical)
+   11931. Amz Word
+   Problem Code: AMZSEQ
+*/
+
 #include <bits/stdc++.h>
+
 using namespace std;
 
-main()
-{
-	int n=5,arr=[1,6,2,76,2]
-	int out[77];
+int main(int argc, char const *argv[])
+	{
+		long long int a[24];
+		int t, x;
 
-	for (int i=0;i<n;i++)
+		a[0] = 1;
+		a[1] = 3;
+
+		for(int i = 2; i < 24; i++)
+			a[i] = 2*a[i-1] + a[i-2];
+	
+		cin >> x;
+		cout << a[x] << endl;			
 		
-}
+		return 0;
+	}

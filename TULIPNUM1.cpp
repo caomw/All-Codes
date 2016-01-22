@@ -1,23 +1,21 @@
 #include <bits/stdc++.h>
-typedef int ll;
+typedef long long int ll;
 using namespace std;
 
 int main()
 {
-
 	freopen("input.txt","r",stdin);
 	freopen("output.txt","w",stdout);
 
-//	ios::sync_with_stdio(0);
-//	cin.tie(0);
+	ios::sync_with_stdio(0);
+	cin.tie(0);
 
 	ll t;
+	cout<<"asd";
 	cin>>t;
-	cout<<"a";
 
-	for (int cas=1;cas<=t;cas++)
+	while(t--)
 	{
-		cout<<"Case "<<cas<<":\n";
 		ll n,q;
 		cin>>n>>q;
 
@@ -26,10 +24,8 @@ int main()
 			cin>>arr[i];
 
 		ll distinct[n+1];
-		for(ll i=0;i<n+1;i++)
+		for(ll i=0;i<n;i++)
 			distinct[i] = 0;
-			
-		distinct[1]=1;
 
 		for(ll k=2;k<1+n;k++)
 		{
@@ -43,7 +39,7 @@ int main()
 		{
 			ll l,r;
 			cin>>l>>r;
-			cout<<distinct[r]-distinct[l-1]<<"\n";
+			cout<<distinct[r]-distinct[l-1];
 		}
 	}
 }
