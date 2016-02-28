@@ -1,52 +1,43 @@
-def getEven(lis):
+from itertools import imap
+from sys import stdin
+
+def knapsack(lis):
+	count=[0]*105
+
+	for e in lis:
+		if count[e]:
+			return 1
+		count[e]+=1
+
+	SUM = sum(lis)/2+1
 	n = len(lis)
 
-	W = sum(lis)/2
+	sumi = [0]*(sum(lis)+1)
+	sumi[0] = 1
 
-	if 2*W != sum(lis):
-		return 0
+	sum_so_far = 0
 
-	k = []
-	for i in xrange(n+1):
-		k.append([])
-		for j in xrange(W+1):
-			k[i].append(-1)
+	for i in xrange(n):
+		for j in xrange(sum_so_far+lis[i],lis[i]-1,-1):
+			if SUM>=j and sumi[j-lis[i]]:
+				if sumi[j]:
+					return 1
+				sumi[j] = 1 
 
-	for i in xrange(n+1):
-		for w in xrange(W+1):
-			if w==0 or i==0:
-				k[i][w] = 0
-			elif lis[i-1]<=w:
-				k[i][w] = max(lis[i-1]+k[i-1][j-lis[i-1]],k[i-1][j])
-			else:
-				k[i][w] = k[i-1][w]
+		sum_so_far+=lis[i]
 
-	return k[n][w]
-
+	return 0
 
 def main():
-	for i in xrange(input()):
-		n = input()
-		lis = map(int,raw_input().split())
-		hash_ = [0]*105
+	dstream = imap(int, stdin.read().split())
+	for i in xrange(next(dstream)):
+		
+		n = next(dstream)
+		lis = [next(dstream) for _ in xrange(n)]
 
-		for i in xrange(n):
-			if hash_[lis[i]]:
-				hash_[lis[i]]-=1
-			else:
-				hash_[lis[i]]+=1
-		lis = []
 
-		for i in xrange(len(hash_)):
-			while hash_[i]:
-				lis.append(i)
-				hash_[i]-=1
-
-		#print lis
-
-		if getEven(lis):
+		if knapsack(lis):
 			print "YES"
 		else:
 			print "NO"
-
 main()

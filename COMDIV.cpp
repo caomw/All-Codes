@@ -32,7 +32,7 @@ main()
 
 	ll te;
 	scanf("%lld",&te);
-
+/*
 	while(te--)
 	{
 		ll a,b;
@@ -49,7 +49,7 @@ main()
 			b--;
 
 		printf("%lld\n",b);
-	}
+	}*/
 	char bc[size];
 	ll c,b,a,t=0;
     //int t=0,n,k,cnt=0;

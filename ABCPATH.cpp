@@ -36,8 +36,8 @@ void dfs(int i,int j,int sum_)
 
 int main()
 {
-	//freopen("input.txt","r",stdin);
-	//freopen("output.txt","w",stdout);
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	
